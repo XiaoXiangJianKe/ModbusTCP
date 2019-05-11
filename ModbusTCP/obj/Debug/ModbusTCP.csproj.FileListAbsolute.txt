@@ -1,0 +1,9 @@
+c:\users\tyx\documents\visual studio 2013\Projects\ModbusTCP\ModbusTCP\bin\Debug\ModbusTCP.exe.config
+c:\users\tyx\documents\visual studio 2013\Projects\ModbusTCP\ModbusTCP\bin\Debug\ModbusTCP.exe
+c:\users\tyx\documents\visual studio 2013\Projects\ModbusTCP\ModbusTCP\bin\Debug\ModbusTCP.pdb
+c:\users\tyx\documents\visual studio 2013\Projects\ModbusTCP\ModbusTCP\obj\Debug\ModbusTCP.Form1.resources
+c:\users\tyx\documents\visual studio 2013\Projects\ModbusTCP\ModbusTCP\obj\Debug\ModbusTCP.Properties.Resources.resources
+c:\users\tyx\documents\visual studio 2013\Projects\ModbusTCP\ModbusTCP\obj\Debug\ModbusTCP.csproj.GenerateResource.Cache
+c:\users\tyx\documents\visual studio 2013\Projects\ModbusTCP\ModbusTCP\obj\Debug\ModbusTCP.exe
+c:\users\tyx\documents\visual studio 2013\Projects\ModbusTCP\ModbusTCP\obj\Debug\ModbusTCP.pdb
+C:\Users\TYX\Documents\Visual Studio 2013\Projects\ModbusTCP\ModbusTCP\obj\Debug\ModbusTCP.csprojResolveAssemblyReference.cache

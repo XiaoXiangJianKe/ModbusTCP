@@ -1,0 +1,9 @@
+D:\我的文档\Visual Studio 2013\Projects\ModbusTCP\ModbusTCPClient\bin\Debug\ModbusTCPClient.exe.config
+D:\我的文档\Visual Studio 2013\Projects\ModbusTCP\ModbusTCPClient\bin\Debug\ModbusTCPClient.exe
+D:\我的文档\Visual Studio 2013\Projects\ModbusTCP\ModbusTCPClient\bin\Debug\ModbusTCPClient.pdb
+D:\我的文档\Visual Studio 2013\Projects\ModbusTCP\ModbusTCPClient\obj\Debug\ModbusTCPClient.csprojResolveAssemblyReference.cache
+D:\我的文档\Visual Studio 2013\Projects\ModbusTCP\ModbusTCPClient\obj\Debug\ModbusTCPClient.Form1.resources
+D:\我的文档\Visual Studio 2013\Projects\ModbusTCP\ModbusTCPClient\obj\Debug\ModbusTCPClient.Properties.Resources.resources
+D:\我的文档\Visual Studio 2013\Projects\ModbusTCP\ModbusTCPClient\obj\Debug\ModbusTCPClient.csproj.GenerateResource.Cache
+D:\我的文档\Visual Studio 2013\Projects\ModbusTCP\ModbusTCPClient\obj\Debug\ModbusTCPClient.exe
+D:\我的文档\Visual Studio 2013\Projects\ModbusTCP\ModbusTCPClient\obj\Debug\ModbusTCPClient.pdb

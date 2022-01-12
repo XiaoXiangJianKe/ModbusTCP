@@ -106,9 +106,16 @@ namespace ModbusTCPServer
         {
             while (isStart)
             {
-                if (clientSocket == null)
+                try
                 {
-                    clientSocket = socket.Accept();
+                    if (clientSocket == null)
+                    {
+                        clientSocket = socket.Accept();
+                    }
+                }
+                catch (SocketException se)
+                {
+                    MessageBox.Show(se.Message);
                 }
 
                 Thread.Sleep(200);
@@ -157,7 +164,7 @@ namespace ModbusTCPServer
                 catch (SocketException se)
                 {
                     MessageBox.Show(se.Message);
-                    this.Disconnect();
+                    CloseClientSocket();
                 }
                 //socket.Receive(data, 0, data.Length, SocketFlags.None);
                 int length = data[5];
@@ -187,28 +194,57 @@ namespace ModbusTCPServer
             }
         }
 
-        private void Disconnect()
+        /// <summary>
+        /// 关闭已断开的客户端
+        /// </summary>
+        private void CloseClientSocket()
         {
-            btn_Create.Enabled = true;
-            isStart = false;
-
-            if (thread != null)
-            {
-                thread.Interrupt();
-                thread.Abort();
-                thread = null;
-            }
-
-            if(clientSocket != null)
+            if (clientSocket != null)
             {
                 clientSocket.Close();
                 clientSocket = null;
             }
+        }
 
-            if (socket != null)
+        private void Disconnect()
+        {
+            try
             {
-                socket.Close();
-                socket = null;
+                btn_Create.Enabled = true;
+                isStart = false;
+
+                if (socket != null)
+                {
+                    //socket.Shutdown(SocketShutdown.Both);
+                    socket.Close();
+                    socket = null;
+                }
+
+                if (thread != null)
+                {
+                    thread.Interrupt();
+                    thread.Abort();
+                    thread = null;
+                }
+
+                if (socket != null)
+                {
+                    //socket.Shutdown(SocketShutdown.Both);
+                    socket.Close();
+                    socket = null;
+                }
+
+                //因为socket.Accept()会阻塞acceptThread，所以要先关闭socket，再关闭acceptThread，否则会卡死
+                if (acceptThread != null)
+                {
+                    acceptThread.Interrupt();
+                    acceptThread.Abort();
+                    acceptThread = null;
+                }
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.Message);
             }
         }
     }

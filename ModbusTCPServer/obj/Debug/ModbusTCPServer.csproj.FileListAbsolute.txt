@@ -7,3 +7,13 @@ C:\Users\TYX\Documents\Visual Studio 2013\Projects\ModbusTCP\ModbusTCPServer\obj
 C:\Users\TYX\Documents\Visual Studio 2013\Projects\ModbusTCP\ModbusTCPServer\obj\Debug\ModbusTCPServer.csproj.GenerateResource.Cache
 C:\Users\TYX\Documents\Visual Studio 2013\Projects\ModbusTCP\ModbusTCPServer\obj\Debug\ModbusTCPServer.exe
 C:\Users\TYX\Documents\Visual Studio 2013\Projects\ModbusTCP\ModbusTCPServer\obj\Debug\ModbusTCPServer.pdb
+G:\FormProjects\ModbusTCP\ModbusTCPServer\bin\Debug\ModbusTCPServer.exe.config
+G:\FormProjects\ModbusTCP\ModbusTCPServer\bin\Debug\ModbusTCPServer.exe
+G:\FormProjects\ModbusTCP\ModbusTCPServer\bin\Debug\ModbusTCPServer.pdb
+G:\FormProjects\ModbusTCP\ModbusTCPServer\obj\Debug\ModbusTCPServer.Form1.resources
+G:\FormProjects\ModbusTCP\ModbusTCPServer\obj\Debug\ModbusTCPServer.Properties.Resources.resources
+G:\FormProjects\ModbusTCP\ModbusTCPServer\obj\Debug\ModbusTCPServer.csproj.GenerateResource.cache
+G:\FormProjects\ModbusTCP\ModbusTCPServer\obj\Debug\ModbusTCPServer.csproj.CoreCompileInputs.cache
+G:\FormProjects\ModbusTCP\ModbusTCPServer\obj\Debug\ModbusTCPServer.exe
+G:\FormProjects\ModbusTCP\ModbusTCPServer\obj\Debug\ModbusTCPServer.pdb
+G:\FormProjects\ModbusTCP\ModbusTCPServer\obj\Debug\ModbusTCPServer.csprojAssemblyReference.cache

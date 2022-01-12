@@ -7,3 +7,13 @@ D:\我的文档\Visual Studio 2013\Projects\ModbusTCP\ModbusTCPClient\obj\Debug\
 D:\我的文档\Visual Studio 2013\Projects\ModbusTCP\ModbusTCPClient\obj\Debug\ModbusTCPClient.csproj.GenerateResource.Cache
 D:\我的文档\Visual Studio 2013\Projects\ModbusTCP\ModbusTCPClient\obj\Debug\ModbusTCPClient.exe
 D:\我的文档\Visual Studio 2013\Projects\ModbusTCP\ModbusTCPClient\obj\Debug\ModbusTCPClient.pdb
+G:\FormProjects\ModbusTCP\ModbusTCPClient\bin\Debug\ModbusTCPClient.exe.config
+G:\FormProjects\ModbusTCP\ModbusTCPClient\bin\Debug\ModbusTCPClient.exe
+G:\FormProjects\ModbusTCP\ModbusTCPClient\bin\Debug\ModbusTCPClient.pdb
+G:\FormProjects\ModbusTCP\ModbusTCPClient\obj\Debug\ModbusTCPClient.csprojAssemblyReference.cache
+G:\FormProjects\ModbusTCP\ModbusTCPClient\obj\Debug\ModbusTCPClient.Form1.resources
+G:\FormProjects\ModbusTCP\ModbusTCPClient\obj\Debug\ModbusTCPClient.Properties.Resources.resources
+G:\FormProjects\ModbusTCP\ModbusTCPClient\obj\Debug\ModbusTCPClient.csproj.GenerateResource.cache
+G:\FormProjects\ModbusTCP\ModbusTCPClient\obj\Debug\ModbusTCPClient.csproj.CoreCompileInputs.cache
+G:\FormProjects\ModbusTCP\ModbusTCPClient\obj\Debug\ModbusTCPClient.exe
+G:\FormProjects\ModbusTCP\ModbusTCPClient\obj\Debug\ModbusTCPClient.pdb

@@ -55,7 +55,6 @@
             this.autoSend = new System.Windows.Forms.CheckBox();
             this.textBoxInterval = new System.Windows.Forms.TextBox();
             this.textBoxJ7 = new System.Windows.Forms.TextBox();
-            this.label3 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // label1
@@ -295,15 +294,6 @@
             this.textBoxJ7.TabIndex = 26;
             this.textBoxJ7.Text = "0.00";
             // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(395, 270);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(29, 12);
-            this.label3.TabIndex = 25;
-            this.label3.Text = "J7：";
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -311,7 +301,6 @@
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.ClientSize = new System.Drawing.Size(646, 392);
             this.Controls.Add(this.textBoxJ7);
-            this.Controls.Add(this.label3);
             this.Controls.Add(this.textBoxInterval);
             this.Controls.Add(this.autoSend);
             this.Controls.Add(this.textBoxC);
@@ -374,7 +363,6 @@
         private System.Windows.Forms.CheckBox autoSend;
         private System.Windows.Forms.TextBox textBoxInterval;
         private System.Windows.Forms.TextBox textBoxJ7;
-        private System.Windows.Forms.Label label3;
     }
 }
 

@@ -17,6 +17,7 @@ namespace ModbusTCPClient
 {
     public partial class Form1 : Form
     {
+        private ModbusTCP modbusTCP;
         private Socket socket;
         private Thread thread;
         private bool connected = false;
@@ -86,11 +87,15 @@ namespace ModbusTCPClient
 
         private void Connect()
         {
-            socket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
-            IPEndPoint remoteEP = new IPEndPoint(IPAddress.Parse(ipText.Text), Convert.ToInt32(portText.Text));
+            //socket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
+            //IPEndPoint remoteEP = new IPEndPoint(IPAddress.Parse(ipText.Text), Convert.ToInt32(portText.Text));
+
+            modbusTCP = new ModbusTCP(ipText.Text, Convert.ToInt32(portText.Text));
+
             try
             {
-                socket.Connect(remoteEP);
+                //socket.Connect(remoteEP);
+                modbusTCP.Connect();
                 connected = true;
                 btn_Connect.Enabled = false;
             }
@@ -114,30 +119,50 @@ namespace ModbusTCPClient
 
             //byte[] data = new byte[] { 0x00, 0x01, 0x00, 0x00, 0x00, 0x06, 0x01, 0x01, 0x00, 0x14, 0x00, 0x13 };
             //byte[] data = new byte[12];
-            receiveText.AppendText(string.Format("发：{0}\r\n", sendText.Text));
-            char[] sendChar = sendText.Text.Replace(" ", "").ToCharArray();
-            byte[] data = new byte[sendChar.Length / 2];
-            string[] sendContent = new string[sendChar.Length / 2 + 1];
-            for (int i = 0, j = 0; i < sendContent.Length && j < sendChar.Length; i++)
+            //receiveText.AppendText(string.Format("发：{0}\r\n", sendText.Text));
+            //char[] sendChar = sendText.Text.Replace(" ", "").ToCharArray();
+            //byte[] data = new byte[sendChar.Length / 2];
+            //string[] sendContent = new string[sendChar.Length / 2 + 1];
+            //for (int i = 0, j = 0; i < sendContent.Length && j < sendChar.Length; i++)
+            //{
+            //    sendContent[i] = string.Format("{0}{1}", sendChar[j].ToString(), sendChar[j + 1].ToString());
+            //    j += 2;
+            //    //receiveText.AppendText(string.Format("{0}\r\n", sendContent[i]));
+            //    data[i] = byte.Parse(sendContent[i], NumberStyles.HexNumber);
+            //}
+
+            //socket.Send(data);
+            //socket.Send(data, 0, data.Length, SocketFlags.None);
+
+            int quantitly = int.Parse(quantity.Text);
+            byte[] sendData = null;
+            if (functionCodeList.Text == "01")
             {
-                sendContent[i] = string.Format("{0}{1}", sendChar[j].ToString(), sendChar[j + 1].ToString());
-                j += 2;
-                //receiveText.AppendText(string.Format("{0}\r\n", sendContent[i]));
-                data[i] = byte.Parse(sendContent[i], NumberStyles.HexNumber);
+                sendData = modbusTCP.ReadAllCoil(quantitly);
+            }
+            else if (functionCodeList.Text == "03")
+            {
+                sendData = modbusTCP.ReadAllRegister(quantitly);
             }
 
-            socket.Send(data);
-            //socket.Send(data, 0, data.Length, SocketFlags.None);
+            if (sendData != null)
+            {
+                string dataStr = BitConverter.ToString(sendData);
+                sendText.Text = dataStr;
+                receiveText.AppendText(string.Format("发：{0}\r\n", sendText.Text));
+            }
         }
 
         private void Receive()
         {
             while (connected)
             {
-                byte[] data = new byte[1024];
+                byte[] data = null;
                 try
                 {
-                    socket.Receive(data);
+                    //socket.Receive(data);
+
+                    data = modbusTCP.Receive();
                 }
                 catch (SocketException se)
                 {
@@ -145,14 +170,21 @@ namespace ModbusTCPClient
                     this.Disconnect();
                 }
                 //socket.Receive(data, 0, data.Length, SocketFlags.None);
-                int length = data[5];
-                byte[] dataShow = new byte[length + 6];
-                for (int i = 0; i < dataShow.Length; i++)
+                if (data != null)
                 {
-                    dataShow[i] = data[i];
+                    int length = data[5];
+                    byte[] dataShow = new byte[length + 6];
+                    for (int i = 0; i < dataShow.Length; i++)
+                    {
+                        dataShow[i] = data[i];
+                    }
+                    string receiveContent = BitConverter.ToString(dataShow);
+                    ShowText(receiveContent);
                 }
-                string receiveContent = BitConverter.ToString(dataShow);
-                ShowText(receiveContent);
+                else
+                {
+                    this.Disconnect();
+                }
             }
         }
 
@@ -186,6 +218,12 @@ namespace ModbusTCPClient
             {
                 socket.Close();
                 socket = null;
+            }
+
+            if (modbusTCP != null)
+            {
+                modbusTCP.Disconnect();
+                modbusTCP = null;
             }
         }
     }

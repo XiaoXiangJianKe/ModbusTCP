@@ -20,6 +20,8 @@ namespace ModbusTCPClient
         private int[] sendSignals = new int[PORT_COUNT];
         private int[] receiveSignals = new int[PORT_COUNT];
 
+        public Action disconnectCallback = null;
+
         public ModbusTCP(string ip, int port)
         {
             this.ip = ip;
@@ -35,7 +37,7 @@ namespace ModbusTCPClient
                 socket.Connect(remoteEP);
                 connected = true;
             }
-            catch(SocketException se)
+            catch (SocketException se)
             {
                 MessageBox.Show("连接服务器失败 " + se.Message);
             }
@@ -47,6 +49,7 @@ namespace ModbusTCPClient
 
             if (socket != null)
             {
+                socket.Shutdown(SocketShutdown.Both);
                 socket.Close();
                 socket = null;
             }
@@ -54,16 +57,20 @@ namespace ModbusTCPClient
 
         public override byte[] Receive()
         {
-            if(connected)
+            if (connected)
             {
                 byte[] data = new byte[1024];
                 try
                 {
-                    socket.Receive(data);
+                    int receiveLength = socket.Receive(data);
+                    if (receiveLength == 0)
+                    {
+                        disconnectCallback?.Invoke();
+                    }
                 }
                 catch (SocketException se)
                 {
-                    MessageBox.Show(se.Message);
+                    MessageBox.Show("客户端：" + se.Message);
                     Disconnect();
                 }
 
@@ -85,7 +92,7 @@ namespace ModbusTCPClient
             {
                 socket.Send(data);
             }
-            catch(SocketException se)
+            catch (SocketException se)
             {
                 MessageBox.Show(se.Message);
             }

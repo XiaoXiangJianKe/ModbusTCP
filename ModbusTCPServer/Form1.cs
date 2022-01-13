@@ -89,6 +89,8 @@ namespace ModbusTCPServer
         private void CreateServer()
         {
             socket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
+            //socket.ReceiveTimeout = 1000;
+            //socket.SendTimeout = 1000;
             IPEndPoint localEP = new IPEndPoint(IPAddress.Parse(ipText.Text), Convert.ToInt32(portText.Text));
             socket.Bind(localEP);
             socket.Listen(10);
@@ -118,7 +120,14 @@ namespace ModbusTCPServer
                     MessageBox.Show(se.Message);
                 }
 
-                Thread.Sleep(200);
+                try
+                {
+                    Thread.Sleep(200);
+                }
+                catch (Exception e)
+                {
+                    MessageBox.Show("服务器：" + e.Message);
+                }
             }
         }
 
@@ -159,11 +168,15 @@ namespace ModbusTCPServer
                 byte[] data = new byte[1024];
                 try
                 {
-                    clientSocket.Receive(data);
+                    int receiveLength = clientSocket.Receive(data);
+                    if(receiveLength == 0)
+                    {
+                        CloseClientSocket();
+                    }
                 }
                 catch (SocketException se)
                 {
-                    MessageBox.Show(se.Message);
+                    MessageBox.Show("服务器：" + se.Message);
                     CloseClientSocket();
                 }
                 //socket.Receive(data, 0, data.Length, SocketFlags.None);
@@ -176,7 +189,14 @@ namespace ModbusTCPServer
                 string receiveContent = BitConverter.ToString(dataShow);
                 ShowText(receiveContent);
 
-                Thread.Sleep(100);
+                try
+                {
+                    Thread.Sleep(100);
+                }
+                catch (Exception e)
+                {
+                    MessageBox.Show("服务器：" + e.Message);
+                }
             }
         }
 
@@ -201,6 +221,7 @@ namespace ModbusTCPServer
         {
             if (clientSocket != null)
             {
+                clientSocket.Shutdown(SocketShutdown.Both);
                 clientSocket.Close();
                 clientSocket = null;
             }
@@ -215,9 +236,15 @@ namespace ModbusTCPServer
 
                 if (socket != null)
                 {
-                    //socket.Shutdown(SocketShutdown.Both);
                     socket.Close();
                     socket = null;
+                }
+
+                if (clientSocket != null)
+                {
+                    clientSocket.Shutdown(SocketShutdown.Both);
+                    clientSocket.Close();
+                    clientSocket = null;
                 }
 
                 if (thread != null)
@@ -225,13 +252,6 @@ namespace ModbusTCPServer
                     thread.Interrupt();
                     thread.Abort();
                     thread = null;
-                }
-
-                if (socket != null)
-                {
-                    //socket.Shutdown(SocketShutdown.Both);
-                    socket.Close();
-                    socket = null;
                 }
 
                 //因为socket.Accept()会阻塞acceptThread，所以要先关闭socket，再关闭acceptThread，否则会卡死

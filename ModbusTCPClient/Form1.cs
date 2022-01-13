@@ -91,6 +91,7 @@ namespace ModbusTCPClient
             //IPEndPoint remoteEP = new IPEndPoint(IPAddress.Parse(ipText.Text), Convert.ToInt32(portText.Text));
 
             modbusTCP = new ModbusTCP(ipText.Text, Convert.ToInt32(portText.Text));
+            modbusTCP.disconnectCallback += Disconnect;
 
             try
             {
@@ -223,6 +224,7 @@ namespace ModbusTCPClient
             if (modbusTCP != null)
             {
                 modbusTCP.Disconnect();
+                modbusTCP.disconnectCallback -= Disconnect;
                 modbusTCP = null;
             }
         }
